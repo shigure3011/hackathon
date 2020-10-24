@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+    <div>
+        <img style="max-height: 250px" alt="" id="preview-image">
+    </div>
+    <div>
+        <form method="post" enctype="multipart/form-data">
+            <label for="input-image">Choose an image</label>
+            <input id="input-image" name="image" type="file" accept="image/*" style="color: transparent" onchange="upload(event)">
+            <input type="submit" value="Analyze">
+        </form>
+    </div>
+    <div>
+        <ol id="prediction-list"></ol>
+    </div>
+
+
+
+    <div class="camera">
+        <video id="video">Video stream not available.</video>
+        <button id="start-button" onclick="capture()">Capture from camera</button>
+    </div>
+    <canvas id="canvas" style="display: none">
+    </canvas>
+
+
+
+    <script src="/javascripts/upload.js"></script>
+    <script src="/javascripts/capture.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>init()</script>
+</body>
+</html>
