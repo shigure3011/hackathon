@@ -6,7 +6,7 @@ let streaming = false;
 let video = document.getElementById('video');
 let canvas = document.getElementById('canvas');
 let photo = document.getElementById('preview-image');
-let startButton = document.getElementById('start-button');
+let startButton = document.getElementById('take-photo');
 
 // Fill the photo with an indication that none has been
 // captured.
@@ -35,7 +35,7 @@ function startCapture() {
 
     // Change button value
     startButton.innerText = "Take photo";
-
+    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
     // Ask for permission
     navigator.mediaDevices.getUserMedia({video: true, audio: false})
         .then((stream) => {
@@ -71,28 +71,33 @@ function startCapture() {
 
 // Take photo
 function takePhoto() {
-    startButton.innerText = "Capture from camera";
+    if (streaming) {
+        startButton.innerText = "Capture from camera";
 
-    let context = canvas.getContext('2d');
-    if (width && height) {
-        canvas.width = width;
-        canvas.height = height;
-        context.drawImage(video, 0, 0, width, height);
-        let data = canvas.toDataURL('image/png');
-        photo.setAttribute('src', data);
-    } else {
-        clearPhoto();
+        let context = canvas.getContext('2d');
+        if (width && height) {
+            canvas.width = width;
+            canvas.height = height;
+            context.drawImage(video, 0, 0, width, height);
+            let data = canvas.toDataURL('image/png');
+            photo.setAttribute('src', data);
+
+        } else {
+            clearPhoto();
+        }
     }
 }
 
 // Stop capture
 function stopCapture() {
-    const stream = video.srcObject;
-    const tracks = stream.getTracks();
+    if (streaming) {
+        const stream = video.srcObject;
+        const tracks = stream.getTracks();
 
-    tracks.forEach(function(track) {
-        track.stop();
-    });
-    streaming = false;
-    video.srcObject = null;
+        tracks.forEach(function (track) {
+            track.stop();
+        });
+        streaming = false;
+        video.srcObject = null;
+    }
 }

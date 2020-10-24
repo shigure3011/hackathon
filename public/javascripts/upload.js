@@ -1,7 +1,10 @@
+
+
+
 // Get cached image
 function init() {
     let cached_image = document.getElementById("input-image");
-    if (cached_image.files) {
+    if (cached_image.files.length > 0) {
         let reader = new FileReader();
         reader.onload = () => {
             let img = document.getElementById('preview-image');
@@ -20,38 +23,20 @@ function upload(event)
         let img = document.getElementById('preview-image');
         img.src = reader.result;
     }
-    console.log(event.target.files[0]);
     reader.readAsDataURL(event.target.files[0]);
 }
 
+// Convert to base64
+function imgToBase64(img) {
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = img.width;
+    canvas.height = img.height;
 
-//Send POST request
-const form = document.querySelector('form');
-form.addEventListener('submit', function(ev) {
-    ev.preventDefault();
-    $("#prediction-list").empty();
+    // I think this won't work inside the function from the console
+    img.crossOrigin = 'anonymous';
 
-    console.log(form);
-    let xhr = new XMLHttpRequest();
-    let img = new FormData(form);
+    ctx.drawImage(img, 0, 0);
+    return canvas.toDataURL('image/jpeg',1);
+}
 
-    xhr.open("POST", "/predict", true);
-    xhr.onreadystatechange = () => {
-        $("#prediction-list").empty();
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-            let status = xhr.status;
-            if (status === 0 || (status >= 200 && status < 400)) {
-                let top3 = JSON.parse(xhr.response);
-                top3.forEach((p) => {
-                    $("#prediction-list").append(`<li style="list-style-type:none;">${p.className}: ${p.probability.toFixed(3)}</li>`);
-                });
-            } else {
-                $("#prediction-list").append(`<li style="list-style-type:none;">${JSON.parse(xhr.response).err}</li>`);
-            }
-        } else {
-            $("#prediction-list").append(`<li style="list-style-type:none;">Analyzing...</li>`);
-        }
-    }
-
-    xhr.send(img);
-});

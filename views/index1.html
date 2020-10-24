@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chẩn đoán bệnh về da</title>
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1> Chẩn đoán bệnh về da</h1>
+    <div>
+        <img height="225" style="max-width: 300px" alt="" id="preview-image">
+        <video id="video">Video stream not available.</video>
+    </div>
+    <div>
+        <form method="post" enctype="multipart/form-data">
+            <label for="input-image">Chọn ảnh</label>
+            <input class="input-image" id="input-image" name="image" type="file"  accept="image/*"  onchange="stopCapture(); upload(event)" >
+            <label for="take-photo">Chụp ảnh</label>
+            <input class="take-photo" id="take-photo" name="photo" type="button" onclick="capture()">
+            <input id="Analyze" type="submit" value="Chẩn đoán" >
+        </form>
+    </div>
+    <div id="prediction-list">
+    </div>
+
+    <canvas id="canvas" style="display: none">
+    </canvas>
+
+    <script src="/javascripts/upload.js"></script>
+    <script src="/javascripts/capture.js"></script>
+    <script src="/javascripts/predict_handler.js"></script>
+    <script>init()</script>
+</body>
+</html>

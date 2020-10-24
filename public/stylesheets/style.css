@@ -1,8 +1,230 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+#Analyze{
+  border:0;
+  font-size: 20px;
+  background: pink;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 2px solid purple;
+  color: purple;
+  padding: 14px 40px;
+  outline: none;
+  border-radius: 24px;
+  transition: 0.25s;
+  cursor: pointer;
 }
 
-a {
-  color: #00B7FF;
+#Analyze:hover{
+  color:white;
+  background-color:purple;
 }
+
+label {
+  font-size: 20px;
+  border:0;
+  background: pink;
+  margin: 20px auto;
+  text-align: center ;
+  border: 2px solid purple;
+  padding: 14px 40px;
+  outline: none;
+  border-radius: 24px;
+  transition: 0.25s;
+  cursor: pointer;
+  overflow: hidden;
+  display: inline-block;
+  color: purple;
+
+}
+
+label:hover{
+  color:white;
+  background-color:purple;
+}
+
+h1 {
+  font-family : sans-serif;
+  text-align: center;
+  background: pink;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 2px solid purple;
+  padding: 14px 10px;
+  width: 700px;
+  outline: none;
+  border-radius: 24px;
+  transition: 0.25s;
+  color: purple;
+}
+
+body {
+  font-family : sans-serif;
+  text-align: center;
+  /*background-color: #89dee2;*/
+}
+
+html {
+  background: url("https://i.pinimg.com/originals/28/f9/02/28f90226c40801a76fdff4daedbe7409.jpg?fbclid=IwAR3UhUZ9y7-K_7mggVEnTwGx-n0G3Z2qizXUnBQYv49augqOlJZf6p_OOPU");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.input-image{
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+
+.take-photo{
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+#video, .content {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+
+.content {
+  font-size: 20px;
+  max-width: 600px;
+  display: block;
+  top: 586px;
+  margin-bottom: 1em;
+  background: pink;
+  padding: 2em 3em;
+  border-radius: .15em;
+  border: .2em solid rebeccapurple;
+  color: purple;
+}
+
+nav, .content {
+  min-width: 600px;
+}
+
+nav {
+  position: relative;
+  z-index: 1;
+}
+nav > a {
+  font-size: 17px;
+  position: relative;
+  width: 7em;
+  display: inline-block;
+  padding: 0.7em 2em 0.5em;
+  color: purple;
+  text-decoration: none;
+  margin: 0 -0.3em;
+}
+nav > a::before {
+  border: 0.2em solid purple;
+}
+nav a::before {
+  font-size: 20px;
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  border-bottom: none;
+  border-radius: 0.4em 0.4em 0 0;
+  background: pink;
+  transform: scale(1.2, 1.3) perspective(0.5em) rotateX(5deg);
+}
+nav a.active {
+  z-index: 2;
+}
+nav a.active::before {
+  background-color: pink;
+  margin-bottom: -0.08em;
+}
+.tab-left nav a::before {
+  transform-origin: bottom right;
+}
+.tab-left nav {
+  padding-left: 2.3em;
+}
+
+svg {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+  0%
+  {
+    transform: rotate(0deg);
+  }
+  100%
+  {
+    transform: rotate(360deg);
+  }
+}
+
+svg circle {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke-width: 10;
+  stroke: pink;
+  stroke-linecap: round;
+  transform: translate(5px, 5px);
+  stroke-dasharray: 440;
+  stroke-dashoffset: 440;
+  animation: animate 4s linear infinite;
+}
+
+@keyframes animate {
+  0%, 100%
+  {
+    stroke-dashoffset: 440;
+  }
+  50%
+  {
+    stroke-dashoffset: 0;
+  }
+  50.1%
+  {
+    stroke-dashoffset: 880;
+  }
+}
+
+.result {
+  min-width: 600px;
+  top: 900px;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 20px;
+  max-width: 600px;
+  display: block;
+  margin-bottom: 1em;
+  background: pink;
+  padding: 2em 3em;
+  border-radius: .15em;
+  border: .2em solid rebeccapurple;
+  color: purple;
+}
+
+
+
+

@@ -33,13 +33,15 @@ module.exports = class Model {
             .map((p, i) => { // this is Array.map
                 return {
                     probability: p,
-                    className: CLASSES[i]
+                    fullName: CLASSES[i].tenDayDu,
+                    engName: CLASSES[i].tenVietTat,
+                    symptom: CLASSES[i].trieuChung,
+                    link: CLASSES[i].link
                 };
-
             }).sort((a, b) => {
                 return b.probability - a.probability;
 
-            }).slice(0, 3);
+            })[0];
         return top3;
     }
 }
