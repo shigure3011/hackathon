@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "npm install && nodemon app.js"
+    "start": "npm install -y && node app.js"
   },
   "dependencies": {
     "@tensorflow/tfjs": "^2.6.0",
