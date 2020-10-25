@@ -39,6 +39,7 @@ function startCapture() {
     // Ask for permission
     navigator.mediaDevices.getUserMedia({video: true, audio: false})
         .then((stream) => {
+            document.getElementById("capture").innerText = "Chụp ảnh";
             video.srcObject = stream;
             video.play();
         })
@@ -90,6 +91,7 @@ function takePhoto() {
 
 // Stop capture
 function stopCapture() {
+    document.getElementById("capture").innerText = "Bật camera";
     if (streaming) {
         const stream = video.srcObject;
         const tracks = stream.getTracks();
